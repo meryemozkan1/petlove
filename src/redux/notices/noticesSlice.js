@@ -7,7 +7,9 @@ import {
   fetchNoticeById,
   addFavorite,
   removeFavorite,
+  fetchCities,
 } from './noticesOperations';
+import { login, refreshUser } from '../auth/authOperations';
 
 const initialState = {
   items: [],
@@ -15,6 +17,7 @@ const initialState = {
   categories: [],
   sexList: [],
   speciesList: [],
+  cities: [],
   page: 1,
   perPage: 6,
   totalPages: 1,
@@ -25,12 +28,17 @@ const initialState = {
     locationId: '',
     sex: '',
     keyword: '',
-    byPopularity: false,
-    byPrice: false,
+    byPopularity: null,
+    byPrice: null,
   },
   favorites: [],
   isLoading: false,
   error: null,
+};
+
+const extractFavoriteIds = (favList) => {
+  if (!Array.isArray(favList)) return [];
+  return favList.map((item) => (typeof item === 'object' && item !== null ? item._id : item));
 };
 
 const noticesSlice = createSlice({
@@ -50,6 +58,9 @@ const noticesSlice = createSlice({
     },
     clearSelectedNotice: (state) => {
       state.selectedNotice = null;
+    },
+    setFavorites: (state, action) => {
+      state.favorites = extractFavoriteIds(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -83,6 +94,10 @@ const noticesSlice = createSlice({
       .addCase(fetchSpeciesList.fulfilled, (state, action) => {
         state.speciesList = action.payload;
       })
+      // Cities
+      .addCase(fetchCities.fulfilled, (state, action) => {
+        state.cities = action.payload || [];
+      })
       // Notice by id
       .addCase(fetchNoticeById.pending, (state) => {
         state.isLoading = true;
@@ -97,12 +112,31 @@ const noticesSlice = createSlice({
       })
       // Favorites toggle update
       .addCase(addFavorite.fulfilled, (state, action) => {
-        if (!state.favorites.includes(action.payload.id)) {
+        if (Array.isArray(action.payload.favorites)) {
+          state.favorites = extractFavoriteIds(action.payload.favorites);
+        } else if (!state.favorites.includes(action.payload.id)) {
           state.favorites.push(action.payload.id);
         }
       })
       .addCase(removeFavorite.fulfilled, (state, action) => {
-        state.favorites = state.favorites.filter((id) => id !== action.payload.id);
+        if (Array.isArray(action.payload.favorites)) {
+          state.favorites = extractFavoriteIds(action.payload.favorites);
+        } else {
+          state.favorites = state.favorites.filter((id) => id !== action.payload.id);
+        }
+      })
+      // Sync favorites on user login / refresh
+      .addCase(login.fulfilled, (state, action) => {
+        const userFavs = action.payload.user?.noticesFavorites || action.payload.noticesFavorites;
+        if (userFavs) {
+          state.favorites = extractFavoriteIds(userFavs);
+        }
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        const userFavs = action.payload?.noticesFavorites;
+        if (userFavs) {
+          state.favorites = extractFavoriteIds(userFavs);
+        }
       });
   },
 });
@@ -112,6 +146,7 @@ export const {
   setNoticesFilters,
   resetNoticesFilters,
   clearSelectedNotice,
+  setFavorites,
 } = noticesSlice.actions;
 
 export const noticesReducer = noticesSlice.reducer;

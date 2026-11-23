@@ -1,0 +1,198 @@
+.filtersContainer {
+  background-color: var(--background-beige);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.searchWrapper {
+  width: 100%;
+}
+
+.dropdownsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.nativeSelect {
+  width: 100%;
+  height: 48px;
+  background-color: var(--white);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  padding: 0 40px 0 16px;
+  font-size: var(--font-sm);
+  color: var(--dark);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.nativeSelect:focus,
+.nativeSelect:hover {
+  border-color: var(--primary);
+}
+
+.selectArrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  pointer-events: none;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+}
+
+.citySelectWrapper {
+  width: 100%;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgba(38, 38, 38, 0.1);
+  width: 100%;
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.sortOptionsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.sortBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  background-color: var(--white);
+  color: var(--dark);
+  border: 1px solid transparent;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sortBadge:hover {
+  border-color: var(--primary);
+}
+
+.sortBadgeActive {
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.clearSortIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: var(--white);
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.clearSortIcon:hover {
+  opacity: 0.8;
+  transform: scale(1.15);
+}
+
+.resetBtn {
+  align-self: flex-start;
+  padding: 10px 24px;
+  background-color: transparent;
+  color: var(--dark);
+  border: 1px solid rgba(38, 38, 38, 0.2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resetBtn:hover {
+  background-color: var(--white);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Tablet & Desktop Responsive Layout */
+@media screen and (min-width: 768px) {
+  .filtersContainer {
+    padding: 32px;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .topRow {
+    gap: 16px;
+  }
+
+  .dropdownsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .bottomRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sortOptionsGroup {
+    width: auto;
+  }
+
+  .resetBtn {
+    align-self: center;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .topRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .searchWrapper {
+    max-width: 280px;
+    flex-shrink: 0;
+  }
+
+  .dropdownsGrid {
+    grid-template-columns: 190px 190px 190px 220px;
+    gap: 16px;
+    flex-grow: 1;
+  }
+}

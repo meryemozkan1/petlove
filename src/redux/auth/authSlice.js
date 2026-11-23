@@ -6,6 +6,7 @@ import {
   refreshUser,
   updateUserProfile,
 } from './authOperations';
+import { addFavorite, removeFavorite } from '../notices/noticesOperations';
 
 const initialState = {
   user: {
@@ -101,6 +102,29 @@ const authSlice = createSlice({
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = { ...state.user, ...action.payload };
+      })
+      // Favorites sync
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        if (!state.user.noticesFavorites) {
+          state.user.noticesFavorites = [];
+        }
+        if (Array.isArray(action.payload.favorites)) {
+          state.user.noticesFavorites = action.payload.favorites;
+        } else if (!state.user.noticesFavorites.some(f => (f._id || f) === action.payload.id)) {
+          state.user.noticesFavorites.push(action.payload.id);
+        }
+      })
+      .addCase(removeFavorite.fulfilled, (state, action) => {
+        if (!state.user.noticesFavorites) {
+          state.user.noticesFavorites = [];
+        }
+        if (Array.isArray(action.payload.favorites)) {
+          state.user.noticesFavorites = action.payload.favorites;
+        } else {
+          state.user.noticesFavorites = state.user.noticesFavorites.filter(
+            f => (f._id || f) !== action.payload.id
+          );
+        }
       })
       // Shared Matchers
       .addMatcher(

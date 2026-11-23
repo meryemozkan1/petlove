@@ -66,7 +66,7 @@ export const addFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await api.post(`/notices/favorites/add/${id}`);
-      return { id, data };
+      return { id, favorites: data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -78,7 +78,21 @@ export const removeFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await api.delete(`/notices/favorites/remove/${id}`);
-      return { id, data };
+      return { id, favorites: data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchCities = createAsyncThunk(
+  'notices/fetchCities',
+  async (keyword = '', thunkAPI) => {
+    try {
+      const { data } = await api.get('/cities/locations', {
+        params: { keyword },
+      });
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

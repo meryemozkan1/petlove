@@ -1,40 +1,37 @@
 .noticesSection {
   padding-top: 40px;
   padding-bottom: 60px;
+  min-height: calc(100vh - 80px);
 }
 
 .noticesContainer {
   display: flex;
   flex-direction: column;
-  gap: 32px;
 }
 
-.filtersBlock {
+.loaderWrapper {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  background-color: var(--white);
-  padding: 20px;
-  border-radius: var(--radius-xl);
+  justify-content: center;
+  align-items: center;
+  min-height: 260px;
 }
 
-.noticesList {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+.paginationWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
 }
 
 @media screen and (min-width: 768px) {
-  .noticesList {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .noticesSection {
+    padding-top: 60px;
+    padding-bottom: 80px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .noticesList {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+  .noticesSection {
+    padding-top: 80px;
+    padding-bottom: 100px;
   }
 }
-
