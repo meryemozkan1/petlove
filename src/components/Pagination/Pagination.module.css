@@ -4,6 +4,7 @@
   justify-content: center;
   gap: 6px;
   margin-top: 32px;
+  width: 100%;
 }
 
 .pagesList {
@@ -26,6 +27,7 @@
   color: var(--dark);
   background-color: var(--white);
   transition: all var(--transition-fast);
+  padding: 0;
 }
 
 .pageBtn:hover:not(:disabled),
@@ -41,8 +43,20 @@
 }
 
 .arrowBtn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
+  border-color: rgba(38, 38, 38, 0.08);
+}
+
+.ellipsis {
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-muted);
+  user-select: none;
 }
 
 .doubleArrow {
@@ -56,11 +70,19 @@
     margin-top: 40px;
   }
 
+  .pagesList {
+    gap: 8px;
+  }
+
   .pageBtn,
   .arrowBtn {
     width: 44px;
     height: 44px;
     font-size: var(--font-size-base);
   }
-}
 
+  .ellipsis {
+    width: 36px;
+    font-size: var(--font-size-base);
+  }
+}

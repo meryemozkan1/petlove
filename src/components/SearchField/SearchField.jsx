@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './SearchField.module.css';
 import Icon from '../Icon/Icon';
 
 const SearchField = ({
-  placeholder = 'Arama yap...',
+  placeholder = 'Search',
   initialValue = '',
   onSearch,
   className = '',
 }) => {
   const [query, setQuery] = useState(initialValue);
+
+  useEffect(() => {
+    setQuery(initialValue || '');
+  }, [initialValue]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +35,7 @@ const SearchField = ({
         aria-label={placeholder}
       />
       <div className={styles.buttonsGroup}>
-        {query && (
+        {query.trim().length > 0 && (
           <button
             type="button"
             className={styles.clearBtn}
@@ -50,4 +54,3 @@ const SearchField = ({
 };
 
 export default SearchField;
-

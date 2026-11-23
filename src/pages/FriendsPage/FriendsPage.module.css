@@ -1,29 +1,41 @@
 .friendsSection {
-  padding-top: 40px;
+  padding-top: 32px;
   padding-bottom: 60px;
+  width: 100%;
 }
 
 .friendsContainer {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
-.friendsList {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+.pageTitle {
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
 }
 
+.loaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+/* Tablet (768px+) */
 @media screen and (min-width: 768px) {
-  .friendsList {
-    grid-template-columns: repeat(2, 1fr);
+  .friendsSection {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .friendsContainer {
+    gap: 32px;
+  }
+
+  .pageTitle {
+    font-size: 54px;
   }
 }
-
-@media screen and (min-width: 1280px) {
-  .friendsList {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
