@@ -1,0 +1,121 @@
+.header {
+  position: relative;
+  width: 100%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: var(--bg-page);
+  z-index: 100;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--dark);
+}
+
+.logoIcon {
+  height: 24px;
+  width: auto;
+}
+
+.desktopNav {
+  display: none;
+}
+
+.desktopAuth {
+  display: none;
+}
+
+.userControls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menuToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
+  padding: 4px;
+}
+
+.mobileUserBar {
+  display: inline-flex;
+}
+
+.mobileDrawer {
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background-color: var(--white);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
+.mobileDrawerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.mobileNav {
+  margin-top: 40px;
+}
+
+.mobileDrawerBottom {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding-bottom: 40px;
+}
+
+.mobileAuthNav {
+  flex-direction: column;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .logoIcon {
+    height: 28px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .desktopNav {
+    display: flex;
+  }
+
+  .desktopAuth {
+    display: flex;
+  }
+
+  .mobileActions {
+    display: none;
+  }
+
+  .mobileDrawer {
+    display: none;
+  }
+}
+

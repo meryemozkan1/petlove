@@ -1,0 +1,49 @@
+.authNav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loginBtn,
+.registerBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: all var(--transition-fast);
+}
+
+.loginBtn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: 1px solid var(--primary);
+}
+
+.loginBtn:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.registerBtn {
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: 1px solid transparent;
+}
+
+.registerBtn:hover {
+  background-color: #ffe6b8;
+}
+
+@media screen and (min-width: 768px) {
+  .loginBtn,
+  .registerBtn {
+    padding: 14px 28px;
+    font-size: var(--font-size-base);
+  }
+}
+

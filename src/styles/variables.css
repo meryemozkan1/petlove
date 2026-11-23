@@ -1,0 +1,53 @@
+:root {
+  /* Colors */
+  --primary: #f6b83d;
+  --primary-hover: #f9b020;
+  --secondary: #fff4df;
+  --accent-red: #ef2447;
+  --accent-red-hover: #d81b3c;
+  --accent-green: #08aa83;
+  --dark: #262626;
+  --text-main: #262626;
+  --text-muted: rgba(38, 38, 38, 0.5);
+  --text-light: rgba(38, 38, 38, 0.8);
+  --bg-page: #f9f9f9;
+  --bg-card: #ffffff;
+  --white: #ffffff;
+  --border-color: rgba(38, 38, 38, 0.15);
+  --border-color-focus: #f6b83d;
+  --badge-bg: #fff4df;
+  --badge-text: #f6b83d;
+
+  /* Typography */
+  --font-family-base: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 28px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 44px;
+  --font-size-4xl: 54px;
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+
+  /* Transitions & Shadows */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  /* Breakpoints Reference (Mobile-first) */
+  /* Mobile: min 320px / base 375px */
+  /* Tablet: >= 768px */
+  /* Desktop: >= 1280px */
+}
+

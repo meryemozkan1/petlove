@@ -1,0 +1,59 @@
+.addPetSection {
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+.addPetContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formCard {
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px 20px;
+}
+
+.title {
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.imageBlock {
+  border-radius: var(--radius-xl);
+  min-height: 240px;
+  background-color: var(--primary);
+}
+
+@media screen and (min-width: 768px) {
+  .formCard {
+    padding: 60px 80px;
+  }
+
+  .imageBlock {
+    min-height: 320px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .addPetContainer {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .formCard {
+    flex: 1;
+  }
+
+  .imageBlock {
+    flex: 1;
+  }
+}
+

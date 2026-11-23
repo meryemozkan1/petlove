@@ -1,0 +1,83 @@
+.authSection {
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formCard {
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px 20px;
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.switchAuth {
+  margin-top: 24px;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.imageBlock {
+  border-radius: var(--radius-xl);
+  min-height: 240px;
+  background-color: var(--primary);
+}
+
+@media screen and (min-width: 768px) {
+  .formCard {
+    padding: 60px 80px;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .imageBlock {
+    min-height: 320px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .authContainer {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .formCard {
+    flex: 1;
+    padding: 70px 84px;
+  }
+
+  .imageBlock {
+    flex: 1;
+  }
+}
+

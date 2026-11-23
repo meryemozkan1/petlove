@@ -1,0 +1,36 @@
+.logoutBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.logoutBtn:hover {
+  background-color: #ffe6b8;
+}
+
+.logoutBtn.light {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+.logoutBtn.light:hover {
+  background-color: var(--secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .logoutBtn {
+    padding: 14px 28px;
+    font-size: var(--font-size-base);
+  }
+}
+

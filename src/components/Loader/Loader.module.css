@@ -1,0 +1,65 @@
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.spinner.small {
+  width: 36px;
+  height: 36px;
+}
+
+.spinner.medium {
+  width: 56px;
+  height: 56px;
+}
+
+.spinner.large {
+  width: 72px;
+  height: 72px;
+}
+
+.pawIcon {
+  color: var(--primary);
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.text {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
