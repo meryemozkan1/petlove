@@ -9,7 +9,7 @@ export const register = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message || 'Registration failed');
     }
   }
 );
@@ -22,7 +22,7 @@ export const login = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message || 'Login failed');
     }
   }
 );
@@ -33,7 +33,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     clearAuthHeader();
   } catch (error) {
     clearAuthHeader();
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message || 'Logout failed');
   }
 });
 
@@ -49,8 +49,13 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const { data } = await api.get('/users/current');
-      return data;
+      let res;
+      try {
+        res = await api.get('/users/current/full');
+      } catch {
+        res = await api.get('/users/current');
+      }
+      return res.data;
     } catch (error) {
       clearAuthHeader();
       return thunkAPI.rejectWithValue(error.message);
@@ -65,8 +70,7 @@ export const updateUserProfile = createAsyncThunk(
       const { data } = await api.patch('/users/current/edit', userData);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message || 'Update profile failed');
     }
   }
 );
-

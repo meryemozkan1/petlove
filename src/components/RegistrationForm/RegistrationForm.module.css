@@ -1,0 +1,145 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 48px 12px 16px;
+  font-size: var(--font-size-sm);
+  color: var(--text-main);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* Validasyon Durumları */
+.inputError {
+  border-color: var(--accent-red) !important;
+}
+
+.inputSuccess {
+  border-color: var(--accent-green) !important;
+}
+
+.iconsCluster {
+  position: absolute;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  padding: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.toggleBtn:hover {
+  opacity: 0.8;
+}
+
+.successIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+  position: absolute;
+  right: 14px;
+}
+
+.iconsCluster .successIcon {
+  position: static;
+}
+
+.errorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-red);
+  position: absolute;
+  right: 14px;
+}
+
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--accent-red);
+  margin-left: 16px;
+  line-height: 1.2;
+}
+
+/* Submit Butonu */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 20px;
+  margin-top: 16px;
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    gap: 18px;
+  }
+
+  .input {
+    padding: 16px 48px 16px 20px;
+    font-size: var(--font-size-base);
+  }
+
+  .submitBtn {
+    padding: 16px 24px;
+    font-size: var(--font-size-base);
+    margin-top: 24px;
+  }
+}
+
