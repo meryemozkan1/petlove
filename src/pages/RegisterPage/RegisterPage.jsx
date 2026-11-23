@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Title from '../../components/Title/Title';
+import PetBlock from '../../components/PetBlock/PetBlock';
 import styles from './RegisterPage.module.css';
 
 const RegisterPage = () => {
@@ -16,9 +17,7 @@ const RegisterPage = () => {
             Already have an account? <Link to="/login" className={styles.link}>Login</Link>
           </p>
         </div>
-        <div className={styles.imageBlock}>
-          {/* Auth görsel alanı */}
-        </div>
+        <PetBlock type="register" className={styles.petBlock} />
       </div>
     </section>
   );

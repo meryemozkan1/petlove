@@ -7,10 +7,15 @@
   transition: background-color var(--transition-fast);
 }
 
-/* Home sayfası turuncu temalı Header */
+/* Home sayfası turuncu temalı Header - Figma'da üstteki turuncu blokla birleşiktir */
 .headerHome {
-  background-color: var(--primary);
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
   color: var(--white);
+  z-index: 20;
 }
 
 /* Diğer sayfalar şeffaf / açık arka planlı Header */
@@ -86,6 +91,10 @@
     padding-bottom: 24px;
   }
 
+  .headerHome {
+    top: 16px;
+  }
+
   .logoIcon {
     height: 28px;
   }
@@ -102,6 +111,10 @@
    - Burger butonu tamamen gizlenir
 */
 @media screen and (min-width: 1280px) {
+  .headerHome {
+    top: 20px;
+  }
+
   .desktopNav {
     display: flex;
   }

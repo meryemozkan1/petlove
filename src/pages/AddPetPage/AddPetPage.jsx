@@ -1,4 +1,5 @@
 import Title from '../../components/Title/Title';
+import PetBlock from '../../components/PetBlock/PetBlock';
 import styles from './AddPetPage.module.css';
 
 const AddPetPage = () => {
@@ -11,9 +12,7 @@ const AddPetPage = () => {
             {/* Evcil hayvan ekleme formu: Title, Name, Species, Birthday, Avatar vb. */}
           </form>
         </div>
-        <div className={styles.imageBlock}>
-          {/* Görsel alanı */}
-        </div>
+        <PetBlock type="addPet" showInfo={false} className={styles.petBlock} />
       </div>
     </section>
   );
