@@ -7,7 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+}
+
+.navItem {
+  display: flex;
 }
 
 .navLink {
@@ -34,9 +38,25 @@
   color: var(--white);
 }
 
+/* Home sayfası turuncu tema için açık/beyaz stil */
+.homeTheme .navLink {
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.homeTheme .navLink:hover {
+  border-color: var(--white);
+}
+
+.homeTheme .navLink.active {
+  background-color: transparent;
+  border-color: var(--white);
+  color: var(--white);
+  font-weight: 700;
+}
+
 @media screen and (min-width: 768px) {
   .navList {
-    flex-direction: row;
     gap: 10px;
   }
 
@@ -46,3 +66,9 @@
   }
 }
 
+@media screen and (min-width: 1280px) {
+  .navList {
+    flex-direction: row;
+    gap: 10px;
+  }
+}

@@ -7,9 +7,12 @@ const navItems = [
   { path: '/friends', label: 'Our friends' },
 ];
 
-const Nav = ({ onItemClick, className = '' }) => {
+const Nav = ({ onItemClick, className = '', isHome = false }) => {
   return (
-    <nav className={`${styles.nav} ${className}`} aria-label="Ana Gezinti">
+    <nav
+      className={`${styles.nav} ${isHome ? styles.homeTheme : ''} ${className}`}
+      aria-label="Main Navigation"
+    >
       <ul className={styles.navList}>
         {navItems.map(({ path, label }) => (
           <li key={path} className={styles.navItem}>
@@ -30,4 +33,3 @@ const Nav = ({ onItemClick, className = '' }) => {
 };
 
 export default Nav;
-

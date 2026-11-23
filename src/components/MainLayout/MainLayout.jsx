@@ -1,10 +1,14 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
+import { selectIsGlobalLoading } from '../../redux/globalSelectors';
 import styles from './MainLayout.module.css';
 
 const MainLayout = () => {
+  const isGlobalLoading = useSelector(selectIsGlobalLoading);
+
   return (
     <div className={styles.layout}>
       <Header />
@@ -13,9 +17,11 @@ const MainLayout = () => {
           <Outlet />
         </Suspense>
       </main>
+
+      {/* Redux'taki genel isLoading aktifken gösterilen yükleme göstergesi */}
+      {isGlobalLoading && <Loader isOverlay text="İşlem yapılıyor..." />}
     </div>
   );
 };
 
 export default MainLayout;
-

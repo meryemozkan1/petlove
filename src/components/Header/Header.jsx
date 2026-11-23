@@ -1,89 +1,87 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from './Header.module.css';
 import Nav from '../Nav/Nav';
 import AuthNav from '../AuthNav/AuthNav';
-import UserBar from '../UserBar/UserBar';
-import LogOutBtn from '../LogOutBtn/LogOutBtn';
+import UserNav from '../UserNav/UserNav';
+import MobileMenu from '../MobileMenu/MobileMenu';
 import Icon from '../Icon/Icon';
 import { selectIsLoggedIn, selectUser } from '../../redux/auth/authSelectors';
-import { logout } from '../../redux/auth/authOperations';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
   const location = useLocation();
 
   const isHome = location.pathname === '/' || location.pathname === '/home';
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
 
-  const closeMenu = () => setMobileMenuOpen(false);
-
   return (
-    <header className={`${styles.header} ${isHome ? styles.headerHome : ''}`}>
+    <header className={`${styles.header} ${isHome ? styles.headerHome : styles.headerDefault}`}>
       <div className={`container ${styles.headerContainer}`}>
-        <Link to="/" className={styles.logo} onClick={closeMenu} aria-label="Petlove Anasayfa">
-          <Icon id="logo" width={92} height={24} className={styles.logoIcon} />
+        {/* Logo - Her zaman /home'a yönlendirir */}
+        <Link
+          to="/home"
+          className={styles.logoLink}
+          onClick={closeMobileMenu}
+          aria-label="Petlove Home"
+        >
+          <Icon
+            id={isHome ? 'logo-white' : 'logo'}
+            width={106}
+            height={28}
+            className={styles.logoIcon}
+          />
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation (1280px+) */}
         <div className={styles.desktopNav}>
-          <Nav />
+          <Nav isHome={isHome} />
         </div>
 
-        {/* Desktop Auth/User Bar */}
-        <div className={styles.desktopAuth}>
-          {isLoggedIn ? (
-            <div className={styles.userControls}>
-              <LogOutBtn onLogout={handleLogout} />
-              <UserBar user={user} />
-            </div>
-          ) : (
-            <AuthNav />
-          )}
-        </div>
+        {/* Right Section: Tablet & Desktop Auth/User Controls + Burger Button */}
+        <div className={styles.rightSection}>
+          {/* Tablet (768px+) & Desktop Auth / User Controls */}
+          <div className={styles.headerControls}>
+            {isLoggedIn ? (
+              <UserNav user={user} isHome={isHome} />
+            ) : (
+              <AuthNav isHome={isHome} />
+            )}
+          </div>
 
-        {/* Mobile / Tablet Actions */}
-        <div className={styles.mobileActions}>
-          {isLoggedIn && <UserBar user={user} className={styles.mobileUserBar} />}
-
+          {/* Burger Menü Butonu (Mobil & Tablette görünür, Desktop'ta gizlenir) */}
           <button
             type="button"
-            className={styles.menuToggle}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+            className={`${styles.burgerBtn} ${isHome ? styles.burgerBtnHome : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Menüyü aç"
             aria-expanded={mobileMenuOpen}
           >
-            <Icon id={mobileMenuOpen ? 'cross' : 'menu'} width={28} height={28} />
+            <Icon id="menu" width={32} height={32} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className={styles.mobileDrawer} role="dialog" aria-modal="true">
-          <div className={styles.mobileDrawerContent}>
-            <Nav onItemClick={closeMenu} className={styles.mobileNav} />
-            <div className={styles.mobileDrawerBottom}>
-              {isLoggedIn ? (
-                <LogOutBtn onLogout={handleLogout} />
-              ) : (
-                <AuthNav onItemClick={closeMenu} className={styles.mobileAuthNav} />
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Açılır / Kapanır Mobil & Tablet Gezinme Menüsü */}
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={closeMobileMenu}
+        isLoggedIn={isLoggedIn}
+        user={user}
+        isHome={isHome}
+      />
     </header>
   );
 };
 
 export default Header;
-

@@ -41,6 +41,15 @@
   white-space: nowrap;
 }
 
+/* Home sayfası turuncu tema stilleri */
+.homeTheme .name {
+  color: var(--white);
+}
+
+.homeTheme .avatarWrapper {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
 @media screen and (min-width: 768px) {
   .avatarWrapper {
     width: 44px;
@@ -52,4 +61,3 @@
     max-width: 160px;
   }
 }
-

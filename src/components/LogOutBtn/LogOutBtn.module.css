@@ -18,6 +18,18 @@
   background-color: #ffe6b8;
 }
 
+/* Home sayfası turuncu tema için açık/beyaz stil */
+.logoutBtn.homeTheme {
+  background-color: var(--white);
+  color: var(--primary);
+  border: 1px solid var(--white);
+}
+
+.logoutBtn.homeTheme:hover {
+  background-color: var(--secondary);
+}
+
+/* Modal veya mobil drawer içi stil */
 .logoutBtn.light {
   background-color: var(--white);
   color: var(--primary);
@@ -33,4 +45,3 @@
     font-size: var(--font-size-base);
   }
 }
-

@@ -1,0 +1,153 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(38, 38, 38, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: fadeIn var(--transition-normal);
+}
+
+.modal {
+  position: relative;
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px 24px;
+  width: 100%;
+  max-width: 335px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp var(--transition-normal);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--dark);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.closeBtn:hover:not(:disabled) {
+  transform: rotate(90deg);
+  color: var(--primary);
+}
+
+.avatarWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-main);
+  margin-bottom: 28px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.yesBtn,
+.cancelBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: all var(--transition-fast);
+}
+
+.yesBtn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: 1px solid var(--primary);
+}
+
+.yesBtn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.cancelBtn {
+  background-color: rgba(38, 38, 38, 0.05);
+  color: var(--dark);
+  border: 1px solid transparent;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background-color: rgba(38, 38, 38, 0.1);
+}
+
+.yesBtn:disabled,
+.cancelBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    max-width: 448px;
+    padding: 60px 48px;
+  }
+
+  .title {
+    font-size: var(--font-size-xl);
+    margin-bottom: 32px;
+  }
+
+  .buttonGroup {
+    gap: 16px;
+  }
+
+  .yesBtn,
+  .cancelBtn {
+    padding: 14px 0;
+    font-size: var(--font-size-base);
+  }
+}
+

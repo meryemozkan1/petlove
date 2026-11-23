@@ -18,6 +18,7 @@
   transition: all var(--transition-fast);
 }
 
+/* Standart tema stilleri */
 .loginBtn {
   background-color: var(--primary);
   color: var(--white);
@@ -39,6 +40,28 @@
   background-color: #ffe6b8;
 }
 
+/* Home sayfası turuncu tema stilleri */
+.homeTheme .loginBtn {
+  background-color: var(--white);
+  color: var(--primary);
+  border-color: var(--white);
+}
+
+.homeTheme .loginBtn:hover {
+  background-color: var(--secondary);
+}
+
+.homeTheme .registerBtn {
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.homeTheme .registerBtn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--white);
+}
+
 @media screen and (min-width: 768px) {
   .loginBtn,
   .registerBtn {
@@ -46,4 +69,3 @@
     font-size: var(--font-size-base);
   }
 }
-

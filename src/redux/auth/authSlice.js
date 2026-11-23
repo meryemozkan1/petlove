@@ -42,6 +42,14 @@ const authSlice = createSlice({
     resetAuthError: (state) => {
       state.error = null;
     },
+    resetAuth: (state) => {
+      state.user = initialState.user;
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isRefreshing = false;
+      state.isLoading = false;
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,13 +67,21 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      // Logout
+      // Logout fulfilled
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
         state.user = initialState.user;
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
+      })
+      // Logout rejected: server error or invalid token -> client still resets session
+      .addCase(logout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.user = initialState.user;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.error = action.payload;
       })
       // Refresh User
       .addCase(refreshUser.pending, (state) => {
@@ -100,7 +116,6 @@ const authSlice = createSlice({
         isAnyOf(
           register.rejected,
           login.rejected,
-          logout.rejected,
           updateUserProfile.rejected
         ),
         handleRejected
@@ -108,6 +123,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetAuthError } = authSlice.actions;
+export const { resetAuthError, resetAuth } = authSlice.actions;
 export const authReducer = authSlice.reducer;
-

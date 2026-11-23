@@ -3,8 +3,20 @@
   width: 100%;
   padding-top: 18px;
   padding-bottom: 18px;
-  background-color: var(--bg-page);
   z-index: 100;
+  transition: background-color var(--transition-fast);
+}
+
+/* Home sayfası turuncu temalı Header */
+.headerHome {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* Diğer sayfalar şeffaf / açık arka planlı Header */
+.headerDefault {
+  background-color: transparent;
+  color: var(--dark);
 }
 
 .headerContainer {
@@ -13,10 +25,15 @@
   justify-content: space-between;
 }
 
-.logo {
+.logoLink {
   display: inline-flex;
   align-items: center;
-  color: var(--dark);
+  color: inherit;
+  transition: opacity var(--transition-fast);
+}
+
+.logoLink:hover {
+  opacity: 0.85;
 }
 
 .logoIcon {
@@ -24,72 +41,45 @@
   width: auto;
 }
 
+/* Masaüstü Navigasyon (1280px altı gizlidir) */
 .desktopNav {
   display: none;
 }
 
-.desktopAuth {
-  display: none;
-}
-
-.userControls {
+.rightSection {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.mobileActions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Header üzerindeki AuthNav / UserNav kontrolleri mobilde gizlidir (Burger menüdedir) */
+.headerControls {
+  display: none;
 }
 
-.menuToggle {
+/* Burger Menü Butonu */
+.burgerBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--dark);
   padding: 4px;
+  transition: transform var(--transition-fast), color var(--transition-fast);
 }
 
-.mobileUserBar {
-  display: inline-flex;
+.burgerBtn:hover {
+  transform: scale(1.05);
 }
 
-.mobileDrawer {
-  position: fixed;
-  inset: 0;
-  top: 64px;
-  background-color: var(--white);
-  z-index: 99;
-  display: flex;
-  flex-direction: column;
-  padding: 40px 20px;
+.burgerBtnHome {
+  color: var(--white);
 }
 
-.mobileDrawerContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.mobileNav {
-  margin-top: 40px;
-}
-
-.mobileDrawerBottom {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-  padding-bottom: 40px;
-}
-
-.mobileAuthNav {
-  flex-direction: column;
-  width: 100%;
-}
-
+/* Tablet (768px) Kuralları:
+   - Header'da UserBar veya AuthNav görünür
+   - Nav burger menü içinde yer alır
+   - Burger butonu aktif kalır
+*/
 @media screen and (min-width: 768px) {
   .header {
     padding-top: 24px;
@@ -99,23 +89,24 @@
   .logoIcon {
     height: 28px;
   }
+
+  .headerControls {
+    display: flex;
+    align-items: center;
+  }
 }
 
+/* Desktop (1280px+) Kuralları:
+   - DesktopNav ortada görünür
+   - HeaderControls sağda görünür
+   - Burger butonu tamamen gizlenir
+*/
 @media screen and (min-width: 1280px) {
   .desktopNav {
     display: flex;
   }
 
-  .desktopAuth {
-    display: flex;
-  }
-
-  .mobileActions {
-    display: none;
-  }
-
-  .mobileDrawer {
+  .burgerBtn {
     display: none;
   }
 }
-
