@@ -255,3 +255,4 @@ const ModalNotice = ({ isOpen, onClose, noticeId, initialNotice = null }) => {
 };
 
 export default ModalNotice;
+

@@ -341,3 +341,4 @@ const NoticesFilters = () => {
 };
 
 export default NoticesFilters;
+

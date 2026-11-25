@@ -27,3 +27,4 @@ const NoticesList = ({ notices, onLearnMore, onAttention }) => {
 };
 
 export default NoticesList;
+

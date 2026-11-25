@@ -175,3 +175,4 @@ const NoticesItem = ({ notice, onLearnMore, onAttention }) => {
 };
 
 export default NoticesItem;
+
