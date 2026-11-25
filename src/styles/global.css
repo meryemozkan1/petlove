@@ -1,6 +1,12 @@
 @import './variables.css';
 @import './reset.css';
 
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
