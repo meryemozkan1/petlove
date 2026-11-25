@@ -1,59 +1,105 @@
 .addPetSection {
-  padding-top: 24px;
-  padding-bottom: 40px;
+  padding-top: 32px;
+  padding-bottom: 60px;
+  min-height: calc(100vh - 80px);
 }
 
 .addPetContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
+}
+
+.petBlockWrapper {
+  width: 100%;
+}
+
+.petBlock {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
 }
 
 .formCard {
   background-color: var(--white);
   border-radius: var(--radius-xl);
   padding: 40px 20px;
+  box-shadow: var(--shadow-card);
+  width: 100%;
+}
+
+.headerBlock {
+  margin-bottom: 28px;
 }
 
 .title {
-  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.imageBlock {
-  border-radius: var(--radius-xl);
-  min-height: 240px;
-  background-color: var(--primary);
+.subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {
-  .formCard {
-    padding: 60px 80px;
+  .addPetSection {
+    padding-top: 40px;
+    padding-bottom: 80px;
   }
 
-  .imageBlock {
-    min-height: 320px;
+  .addPetContainer {
+    gap: 40px;
+  }
+
+  .formCard {
+    padding: 50px 80px;
+    border-radius: 40px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 16px;
   }
 }
 
 @media screen and (min-width: 1280px) {
+  .addPetSection {
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
+
   .addPetContainer {
     flex-direction: row;
     align-items: stretch;
     gap: 32px;
   }
 
-  .formCard {
-    flex: 1;
+  .petBlockWrapper {
+    width: 592px;
+    flex-shrink: 0;
+    display: flex;
   }
 
-  .imageBlock {
-    flex: 1;
+  .petBlock {
+    height: 100%;
+    border-radius: 60px;
+  }
+
+  .formCard {
+    border-radius: 60px;
+    padding: 60px 80px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
-

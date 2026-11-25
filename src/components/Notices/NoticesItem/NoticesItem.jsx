@@ -20,7 +20,13 @@ const formatDate = (dateStr) => {
   return `${day}.${month}.${year}`;
 };
 
-const NoticesItem = ({ notice, onLearnMore, onAttention }) => {
+const NoticesItem = ({
+  notice,
+  onLearnMore,
+  onAttention,
+  showTrash = false,
+  onTrash = null,
+}) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(selectNoticesFavorites);
@@ -149,23 +155,34 @@ const NoticesItem = ({ notice, onLearnMore, onAttention }) => {
                 Learn more
               </button>
 
-              <button
-                type="button"
-                className={`${styles.heartBtn} ${
-                  isFavorite ? styles.heartBtnActive : ''
-                }`}
-                onClick={handleHeartClick}
-                disabled={isFavLoading}
-                aria-label={
-                  isFavorite ? 'Remove from favorites' : 'Add to favorites'
-                }
-              >
-                <Icon
-                  id={isFavorite ? 'heart-filled' : 'heart'}
-                  width={18}
-                  height={18}
-                />
-              </button>
+              {showTrash ? (
+                <button
+                  type="button"
+                  className={styles.trashBtn}
+                  onClick={() => onTrash && onTrash(id)}
+                  aria-label="Remove from favorites"
+                >
+                  <Icon id="trash" width={18} height={18} />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={`${styles.heartBtn} ${
+                    isFavorite ? styles.heartBtnActive : ''
+                  }`}
+                  onClick={handleHeartClick}
+                  disabled={isFavLoading}
+                  aria-label={
+                    isFavorite ? 'Remove from favorites' : 'Add to favorites'
+                  }
+                >
+                  <Icon
+                    id={isFavorite ? 'heart-filled' : 'heart'}
+                    width={18}
+                    height={18}
+                  />
+                </button>
+              )}
             </div>
           </div>
         </div>

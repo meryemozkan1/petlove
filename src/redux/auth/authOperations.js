@@ -74,3 +74,39 @@ export const updateUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const getFullUserProfile = createAsyncThunk(
+  'auth/getFullUserProfile',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await api.get('/users/current/full');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message || 'Get full profile failed');
+    }
+  }
+);
+
+export const addPet = createAsyncThunk(
+  'auth/addPet',
+  async (petData, thunkAPI) => {
+    try {
+      const { data } = await api.post('/users/current/pets/add', petData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message || 'Add pet failed');
+    }
+  }
+);
+
+export const removePet = createAsyncThunk(
+  'auth/removePet',
+  async (petId, thunkAPI) => {
+    try {
+      const { data } = await api.delete(`/users/current/pets/remove/${petId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message || 'Remove pet failed');
+    }
+  }
+);

@@ -1,48 +1,44 @@
 .profileSection {
   padding-top: 40px;
   padding-bottom: 60px;
+  min-height: calc(100vh - 80px);
 }
 
 .profileContainer {
   display: flex;
   flex-direction: column;
-  gap: 32px;
 }
 
-.userCard {
-  background-color: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 32px 20px;
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
 }
 
-.petsCard {
-  background-color: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 32px 20px;
+.contentLayout {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
+  width: 100%;
 }
 
-.petsHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@media screen and (min-width: 768px) {
+  .profileSection {
+    padding-top: 50px;
+    padding-bottom: 80px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-  .profileContainer {
+  .profileSection {
+    padding-top: 60px;
+    padding-bottom: 100px;
+  }
+
+  .contentLayout {
     flex-direction: row;
     align-items: flex-start;
-  }
-
-  .userCard {
-    width: 480px;
-    flex-shrink: 0;
-  }
-
-  .petsCard {
-    flex: 1;
+    gap: 32px;
   }
 }
-

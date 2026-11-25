@@ -1,0 +1,24 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.emptyContainer {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.emptyText {
+  font-size: 13px;
+  color: var(--gray-light);
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    gap: 16px;
+  }
+}

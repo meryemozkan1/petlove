@@ -5,6 +5,9 @@ import {
   logout,
   refreshUser,
   updateUserProfile,
+  getFullUserProfile,
+  addPet,
+  removePet,
 } from './authOperations';
 import { addFavorite, removeFavorite } from '../notices/noticesOperations';
 
@@ -103,6 +106,21 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = { ...state.user, ...action.payload };
       })
+      // Get Full Profile
+      .addCase(getFullUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = { ...state.user, ...action.payload };
+      })
+      // Add Pet
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = { ...state.user, ...action.payload };
+      })
+      // Remove Pet
+      .addCase(removePet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = { ...state.user, ...action.payload };
+      })
       // Favorites sync
       .addCase(addFavorite.fulfilled, (state, action) => {
         if (!state.user.noticesFavorites) {
@@ -132,7 +150,10 @@ const authSlice = createSlice({
           register.pending,
           login.pending,
           logout.pending,
-          updateUserProfile.pending
+          updateUserProfile.pending,
+          getFullUserProfile.pending,
+          addPet.pending,
+          removePet.pending
         ),
         handlePending
       )
@@ -140,7 +161,10 @@ const authSlice = createSlice({
         isAnyOf(
           register.rejected,
           login.rejected,
-          updateUserProfile.rejected
+          updateUserProfile.rejected,
+          getFullUserProfile.rejected,
+          addPet.rejected,
+          removePet.rejected
         ),
         handleRejected
       );

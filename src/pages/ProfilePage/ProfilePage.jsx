@@ -1,25 +1,40 @@
-import Title from '../../components/Title/Title';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import UserCard from '../../components/Profile/UserCard/UserCard';
+import MyNotices from '../../components/Profile/MyNotices/MyNotices';
+import Loader from '../../components/Loader/Loader';
+import { getFullUserProfile } from '../../redux/auth/authOperations';
+import { selectAuthLoading, selectUser } from '../../redux/auth/authSelectors';
 import styles from './ProfilePage.module.css';
 
 const ProfilePage = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isLoading = useSelector(selectAuthLoading);
+
+  useEffect(() => {
+    dispatch(getFullUserProfile());
+  }, [dispatch]);
+
   return (
     <section className={styles.profileSection}>
       <div className={`container ${styles.profileContainer}`}>
-        <div className={styles.userCard}>
-          <Title level={2}>User Information</Title>
-          {/* UserCard / Avatar düzenleme, profil formu */}
-        </div>
-        <div className={styles.petsCard}>
-          <div className={styles.petsHeader}>
-            <Title level={2}>My pets</Title>
-            {/* Add pet butonu */}
+        {isLoading && !user?._id ? (
+          <div className={styles.loaderWrapper}>
+            <Loader />
           </div>
-          {/* Pets listesi */}
-        </div>
+        ) : (
+          <div className={styles.contentLayout}>
+            {/* Sol Panel: UserCard */}
+            <UserCard />
+
+            {/* Sağ Panel: MyNotices */}
+            <MyNotices />
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
 export default ProfilePage;
-
