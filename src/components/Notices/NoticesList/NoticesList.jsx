@@ -1,7 +1,7 @@
 import NoticesItem from '../NoticesItem/NoticesItem';
 import styles from './NoticesList.module.css';
 
-const NoticesList = ({ notices, onLearnMore, onAttention }) => {
+const NoticesList = ({ notices, onLearnMore, onAttention, onFirstFavorite }) => {
   if (!notices || notices.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -20,6 +20,7 @@ const NoticesList = ({ notices, onLearnMore, onAttention }) => {
           notice={notice}
           onLearnMore={onLearnMore}
           onAttention={onAttention}
+          onFirstFavorite={onFirstFavorite}
         />
       ))}
     </ul>

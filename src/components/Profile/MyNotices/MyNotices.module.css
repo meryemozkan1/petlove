@@ -40,19 +40,26 @@
 }
 
 .emptyContainer {
-  background-color: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 60px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  min-height: 220px;
+  padding: 40px 16px;
   text-align: center;
-  margin-top: 10px;
 }
 
 .emptyText {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--dark);
-  max-width: 480px;
+  max-width: 458px;
   margin: 0 auto;
+}
+
+.highlightText {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .noticesGrid {
@@ -81,7 +88,8 @@
   }
 
   .emptyContainer {
-    padding: 80px 40px;
+    min-height: 360px;
+    padding: 60px 24px;
   }
 
   .emptyText {

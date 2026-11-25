@@ -7,6 +7,7 @@ import NoticesFilters from '../../components/Notices/NoticesFilters/NoticesFilte
 import NoticesList from '../../components/Notices/NoticesList/NoticesList';
 import ModalAttention from '../../components/Modals/ModalAttention/ModalAttention';
 import ModalNotice from '../../components/Modals/ModalNotice/ModalNotice';
+import ModalCongrats from '../../components/Modals/ModalCongrats/ModalCongrats';
 import { fetchNotices, fetchNoticeById } from '../../redux/notices/noticesOperations';
 import {
   selectNotices,
@@ -28,6 +29,7 @@ const NoticesPage = () => {
 
   const [isAttentionOpen, setIsAttentionOpen] = useState(false);
   const [isNoticeOpen, setIsNoticeOpen] = useState(false);
+  const [isCongratsOpen, setIsCongratsOpen] = useState(false);
   const [activeNoticeId, setActiveNoticeId] = useState(null);
   const [activeNoticeData, setActiveNoticeData] = useState(null);
 
@@ -87,6 +89,7 @@ const NoticesPage = () => {
             notices={notices}
             onLearnMore={handleLearnMore}
             onAttention={handleAttention}
+            onFirstFavorite={() => setIsCongratsOpen(true)}
           />
         )}
 
@@ -115,6 +118,13 @@ const NoticesPage = () => {
           }}
           noticeId={activeNoticeId}
           initialNotice={activeNoticeData}
+          onFirstFavorite={() => setIsCongratsOpen(true)}
+        />
+
+        {/* Tebrikler Modalı (İlk favoride) */}
+        <ModalCongrats
+          isOpen={isCongratsOpen}
+          onClose={() => setIsCongratsOpen(false)}
         />
       </div>
     </section>

@@ -65,9 +65,13 @@ const MyNotices = () => {
       {currentList.length === 0 ? (
         <div className={styles.emptyContainer}>
           <p className={styles.emptyText}>
-            Oops, looks like there aren&apos;t any furries on our adorable page yet.
-            Do not worry! View your pets on the &ldquo;find your favorite pet&rdquo; page
-            and add them to your favorites.
+            Oops,{' '}
+            <span className={styles.highlightText}>
+              looks like there aren&apos;t any furries
+            </span>{' '}
+            on our adorable page yet. Do not worry! View your pets on the
+            &ldquo;find your favorite pet&rdquo; page and add them to your
+            favorites.
           </p>
         </div>
       ) : (

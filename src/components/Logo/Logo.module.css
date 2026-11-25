@@ -1,0 +1,56 @@
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  user-select: none;
+}
+
+.logoLink:hover {
+  opacity: 0.85;
+}
+
+.logoDefault {
+  color: var(--dark);
+}
+
+.logoHome {
+  color: var(--white);
+}
+
+.heartWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1px;
+  transform: translateY(1px);
+}
+
+.heartIcon {
+  width: 17px;
+  height: 17px;
+}
+
+.logoDefault .heartWrapper {
+  color: var(--primary);
+}
+
+.logoHome .heartWrapper {
+  color: var(--white);
+}
+
+@media screen and (min-width: 768px) {
+  .logoLink {
+    font-size: 28px;
+  }
+
+  .heartIcon {
+    width: 23px;
+    height: 23px;
+  }
+}

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './Header.module.css';
+import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
 import AuthNav from '../AuthNav/AuthNav';
 import UserNav from '../UserNav/UserNav';
@@ -29,19 +30,7 @@ const Header = () => {
     <header className={`${styles.header} ${isHome ? styles.headerHome : styles.headerDefault}`}>
       <div className={`container ${styles.headerContainer}`}>
         {/* Logo - Her zaman /home'a yönlendirir */}
-        <Link
-          to="/home"
-          className={styles.logoLink}
-          onClick={closeMobileMenu}
-          aria-label="Petlove Home"
-        >
-          <Icon
-            id={isHome ? 'logo-white' : 'logo'}
-            width={106}
-            height={28}
-            className={styles.logoIcon}
-          />
-        </Link>
+        <Logo isHome={isHome} onClick={closeMobileMenu} />
 
         {/* Desktop Navigation (1280px+) */}
         <div className={styles.desktopNav}>

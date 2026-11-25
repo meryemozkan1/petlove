@@ -24,6 +24,7 @@ const NoticesItem = ({
   notice,
   onLearnMore,
   onAttention,
+  onFirstFavorite = null,
   showTrash = false,
   onTrash = null,
 }) => {
@@ -56,8 +57,12 @@ const NoticesItem = ({
         await dispatch(removeFavorite(id)).unwrap();
         toast.success('Removed from favorites!');
       } else {
+        const isFirstFavorite = userFavorites.length === 0 && favorites.length === 0;
         await dispatch(addFavorite(id)).unwrap();
         toast.success('Added to favorites!');
+        if (isFirstFavorite && onFirstFavorite) {
+          onFirstFavorite();
+        }
       }
     } catch (err) {
       toast.error(typeof err === 'string' ? err : 'Action failed');

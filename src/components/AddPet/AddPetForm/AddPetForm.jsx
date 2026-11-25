@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import Icon from '../../Icon/Icon';
+import ModalCongrats from '../../Modals/ModalCongrats/ModalCongrats';
 import { addPet } from '../../../redux/auth/authOperations';
 import { fetchSpeciesList } from '../../../redux/notices/noticesOperations';
 import { selectSpeciesList } from '../../../redux/notices/noticesSelectors';
@@ -45,6 +46,7 @@ const AddPetForm = () => {
   const navigate = useNavigate();
   const speciesList = useSelector(selectSpeciesList);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCongratsOpen, setIsCongratsOpen] = useState(false);
 
   const {
     register,
@@ -88,7 +90,7 @@ const AddPetForm = () => {
 
       await dispatch(addPet(payload)).unwrap();
       toast.success('Pet added successfully!');
-      navigate('/profile');
+      setIsCongratsOpen(true);
     } catch (err) {
       toast.error(typeof err === 'string' ? err : 'Failed to add pet');
     } finally {
@@ -246,6 +248,15 @@ const AddPetForm = () => {
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </div>
+
+      <ModalCongrats
+        isOpen={isCongratsOpen}
+        onClose={() => {
+          setIsCongratsOpen(false);
+          navigate('/profile');
+        }}
+        redirectToProfile={false}
+      />
     </form>
   );
 };

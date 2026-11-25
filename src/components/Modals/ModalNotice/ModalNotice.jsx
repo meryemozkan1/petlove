@@ -30,7 +30,13 @@ const formatDate = (dateStr) => {
   return `${day}.${month}.${year}`;
 };
 
-const ModalNotice = ({ isOpen, onClose, noticeId, initialNotice = null }) => {
+const ModalNotice = ({
+  isOpen,
+  onClose,
+  noticeId,
+  initialNotice = null,
+  onFirstFavorite = null,
+}) => {
   const dispatch = useDispatch();
   const selectedNotice = useSelector(selectSelectedNotice);
   const favorites = useSelector(selectNoticesFavorites);
@@ -90,8 +96,13 @@ const ModalNotice = ({ isOpen, onClose, noticeId, initialNotice = null }) => {
         await dispatch(removeFavorite(id)).unwrap();
         toast.success('Removed from favorites!');
       } else {
+        const isFirstFavorite = userFavorites.length === 0 && favorites.length === 0;
         await dispatch(addFavorite(id)).unwrap();
         toast.success('Added to favorites!');
+        if (isFirstFavorite && onFirstFavorite) {
+          onClose();
+          onFirstFavorite();
+        }
       }
     } catch (err) {
       toast.error(typeof err === 'string' ? err : 'Action failed');

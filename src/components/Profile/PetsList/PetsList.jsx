@@ -3,11 +3,7 @@ import styles from './PetsList.module.css';
 
 const PetsList = ({ pets = [] }) => {
   if (!pets || pets.length === 0) {
-    return (
-      <div className={styles.emptyContainer}>
-        <p className={styles.emptyText}>You haven&apos;t added any pets yet.</p>
-      </div>
-    );
+    return null;
   }
 
   return (
