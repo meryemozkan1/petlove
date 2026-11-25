@@ -20,3 +20,4 @@ const PetsList = ({ pets = [] }) => {
 };
 
 export default PetsList;
+
