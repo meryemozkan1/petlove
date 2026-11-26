@@ -2,32 +2,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 4px;
   margin-top: 32px;
   width: 100%;
+  max-width: 100%;
 }
 
 .pagesList {
   display: flex;
   align-items: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
 }
 
 .pageBtn,
 .arrowBtn {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  font-size: var(--font-size-sm);
+  font-size: 13px;
   font-weight: 700;
   color: var(--dark);
   background-color: var(--white);
   transition: all var(--transition-fast);
   padding: 0;
+  flex-shrink: 0;
 }
 
 .pageBtn:hover:not(:disabled),

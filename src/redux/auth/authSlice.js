@@ -114,7 +114,11 @@ const authSlice = createSlice({
       // Add Pet
       .addCase(addPet.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = { ...state.user, ...action.payload };
+        if (action.payload?.pets) {
+          state.user = { ...state.user, ...action.payload };
+        } else if (action.payload?._id) {
+          state.user.pets = [...(state.user.pets || []), action.payload];
+        }
       })
       // Remove Pet
       .addCase(removePet.fulfilled, (state, action) => {

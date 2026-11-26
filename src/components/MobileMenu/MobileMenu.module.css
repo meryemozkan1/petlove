@@ -64,6 +64,10 @@
   gap: 12px;
 }
 
+.mobileAuthNav a {
+  width: 100%;
+}
+
 .mobileLogoutBtn {
   width: 100%;
 }

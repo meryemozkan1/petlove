@@ -24,7 +24,7 @@
 .title {
   font-family: var(--font-family-base);
   font-weight: 700;
-  font-size: 50px;
+  font-size: clamp(38px, 13vw, 50px);
   line-height: 0.96;
   letter-spacing: -0.03em;
   color: var(--white);
@@ -82,7 +82,7 @@
   }
 
   .heroCard {
-    padding: 104px 32px 64px;
+    padding: 104px 32px 44px;
   }
 
   .title {
@@ -95,6 +95,7 @@
     font-size: var(--font-size-md);
     line-height: 1.22;
     max-width: 255px;
+    margin-left: auto;
   }
 
   .imageWrapper {
@@ -110,17 +111,17 @@
 /* Desktop (1280px+) */
 @media screen and (min-width: 1280px) {
   .homeSection {
-    padding-top: 20px;
-    padding-bottom: 60px;
+    padding-top: 16px;
+    padding-bottom: 32px;
   }
 
   .homeContainer {
-    gap: 32px;
+    gap: 0;
   }
 
   .heroCard {
     border-radius: var(--radius-2xl);
-    padding: 120px 64px 64px;
+    padding: 112px 64px 32px;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
@@ -138,7 +139,7 @@
     font-size: var(--font-size-md);
     line-height: 1.22;
     max-width: 255px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     flex-shrink: 0;
   }
 
@@ -149,6 +150,6 @@
 
   .heroImg {
     min-height: 384px;
-    max-height: 400px;
+    max-height: 440px;
   }
 }

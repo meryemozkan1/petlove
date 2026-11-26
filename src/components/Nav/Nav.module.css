@@ -24,6 +24,7 @@
   color: var(--dark);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
