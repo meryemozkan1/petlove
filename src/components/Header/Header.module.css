@@ -99,8 +99,8 @@
 
 /* Tablet (768px) Kuralları:
    - Header'da UserBar veya AuthNav görünür
-   - Nav burger menü içinde yer alır
-   - Burger butonu aktif kalır
+   - Nav linkleri desktop'ta (1280px+) ortada görünür
+   - Burger butonu >= 768px'de gizlenir
 */
 @media screen and (min-width: 768px) {
   .header {
@@ -124,6 +124,11 @@
   .headerControls {
     display: flex;
     align-items: center;
+  }
+
+  /* Tablet ve üzerinde hamburger gizlenir */
+  .burgerBtn {
+    display: none;
   }
 }
 

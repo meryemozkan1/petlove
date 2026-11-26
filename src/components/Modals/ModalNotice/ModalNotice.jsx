@@ -244,8 +244,9 @@ const ModalNotice = ({
                 <a
                   href={contactHref}
                   className={styles.contactBtn}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(contactHref.startsWith('mailto:')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
                 >
                   Contact
                 </a>
