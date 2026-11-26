@@ -85,3 +85,4 @@ const ModalCongrats = ({ isOpen, onClose, redirectToProfile = true }) => {
 };
 
 export default ModalCongrats;
+

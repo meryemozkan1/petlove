@@ -20,3 +20,4 @@ const Logo = ({ isHome = false, onClick }) => {
 };
 
 export default Logo;
+
