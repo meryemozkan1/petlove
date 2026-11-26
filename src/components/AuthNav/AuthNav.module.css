@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .loginBtn,
@@ -15,6 +16,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
@@ -63,6 +66,14 @@
 }
 
 @media screen and (min-width: 768px) {
+  .loginBtn,
+  .registerBtn {
+    padding: 12px 22px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .loginBtn,
   .registerBtn {
     padding: 14px 28px;

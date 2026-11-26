@@ -11,6 +11,8 @@
   background-color: var(--secondary);
   color: var(--primary);
   border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 

@@ -1,9 +1,11 @@
 .header {
   position: relative;
   width: 100%;
+  max-width: 100%;
   padding-top: 18px;
   padding-bottom: 18px;
   z-index: 100;
+  box-sizing: border-box;
   transition: background-color var(--transition-fast);
 }
 
@@ -28,6 +30,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.headerHome .headerContainer {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .logoLink {
@@ -57,9 +67,16 @@
   gap: 16px;
 }
 
-/* Header üzerindeki AuthNav / UserNav kontrolleri mobilde gizlidir (Burger menüdedir) */
+/* Header üzerindeki AuthNav / UserNav kontrolleri mobilde (<768px) kesinlikle gizlidir */
 .headerControls {
   display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .headerControls,
+  .desktopNav {
+    display: none;
+  }
 }
 
 /* Burger Menü Butonu */
@@ -95,6 +112,11 @@
     top: 16px;
   }
 
+  .headerHome .headerContainer {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
   .logoIcon {
     height: 28px;
   }
@@ -112,11 +134,21 @@
 */
 @media screen and (min-width: 1280px) {
   .headerHome {
-    top: 20px;
+    top: 16px;
+  }
+
+  .headerHome .headerContainer {
+    padding-left: 96px;
+    padding-right: 96px;
   }
 
   .desktopNav {
     display: flex;
+    flex-shrink: 0;
+  }
+
+  .rightSection {
+    flex-shrink: 0;
   }
 
   .burgerBtn {

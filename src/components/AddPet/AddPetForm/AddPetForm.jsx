@@ -12,8 +12,24 @@ import { fetchSpeciesList } from '../../../redux/notices/noticesOperations';
 import { selectSpeciesList } from '../../../redux/notices/noticesSelectors';
 import styles from './AddPetForm.module.css';
 
-const IMG_URL_REGEX = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/;
+const BACKEND_IMG_REGEX = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)(\?.*)?$/i;
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+
+const isValidCalendarDate = (value) => {
+  if (!DATE_REGEX.test(value)) return false;
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day
+  ) {
+    return false;
+  }
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+  return date <= today;
+};
 
 const schema = Yup.object().shape({
   sex: Yup.string()
@@ -22,17 +38,28 @@ const schema = Yup.object().shape({
   imgURL: Yup.string()
     .trim()
     .matches(
-      IMG_URL_REGEX,
-      'Image URL must be in format https://... (png, jpg, jpeg, gif, bmp, webp)'
+      BACKEND_IMG_REGEX,
+      'Image URL must end with .png, .jpg, .jpeg, .gif, .bmp, or .webp (e.g., https://example.com/pet.jpg)'
     )
     .required('Image URL is required'),
-  title: Yup.string().trim().required('Title is required'),
-  name: Yup.string().trim().required('Name is required'),
+  title: Yup.string()
+    .trim()
+    .min(2, 'Title must be at least 2 characters')
+    .required('Title of add is required'),
+  name: Yup.string()
+    .trim()
+    .min(2, "Pet's name must be at least 2 characters")
+    .required("Pet's name is required"),
   birthday: Yup.string()
     .trim()
-    .matches(DATE_REGEX, 'Birthday must be in format YYYY-MM-DD')
+    .matches(DATE_REGEX, 'Birthday must be in format YYYY-MM-DD (e.g., 2022-05-15)')
+    .test(
+      'is-valid-date',
+      'Please enter a valid calendar date not in the future',
+      (val) => (val ? isValidCalendarDate(val) : false)
+    )
     .required('Birthday is required'),
-  species: Yup.string().trim().required('Species is required'),
+  species: Yup.string().trim().required('Please select a type of pet'),
 });
 
 const SEX_OPTIONS = [
@@ -79,10 +106,14 @@ const AddPetForm = () => {
   const onSubmit = async (data) => {
     try {
       setIsSubmitting(true);
+      // Backend query string'li uzantıyı reddettiği için ?... kısmını temizle
+      const rawImgUrl = data.imgURL.trim();
+      const cleanImgUrl = rawImgUrl.split('?')[0];
+
       const payload = {
         title: data.title.trim(),
         name: data.name.trim(),
-        imgURL: data.imgURL.trim(),
+        imgURL: cleanImgUrl,
         species: data.species.toLowerCase().trim(),
         birthday: data.birthday.trim(),
         sex: data.sex,
@@ -92,7 +123,11 @@ const AddPetForm = () => {
       toast.success('Pet added successfully!');
       setIsCongratsOpen(true);
     } catch (err) {
-      toast.error(typeof err === 'string' ? err : 'Failed to add pet');
+      const errorMsg =
+        typeof err === 'string'
+          ? err
+          : err?.message || 'Failed to add pet. Please check your inputs.';
+      toast.error(errorMsg);
     } finally {
       setIsSubmitting(false);
     }
@@ -133,9 +168,9 @@ const AddPetForm = () => {
       {/* 2. Fotoğraf Önizleme + URL Alanı */}
       <div className={styles.avatarSection}>
         <div className={styles.avatarWrapper}>
-          {imgURLWatch && IMG_URL_REGEX.test(imgURLWatch) ? (
+          {imgURLWatch && BACKEND_IMG_REGEX.test(imgURLWatch.trim()) ? (
             <img
-              src={imgURLWatch}
+              src={imgURLWatch.trim()}
               alt="Pet preview"
               className={styles.avatarImg}
               referrerPolicy="no-referrer"

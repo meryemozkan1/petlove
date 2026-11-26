@@ -11,7 +11,8 @@
 .sexOptionsGroup {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .sexBtn {
